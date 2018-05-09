@@ -3,6 +3,7 @@ FROM ubuntu:16.04
 ENV MAPSERVER_VERSION 7.0.7
 ENV DEPENDENCIAS  \
     nginx \
+    apache2 \
     libfcgi-dev \
     php5.6 \
     php5.6-fpm \ 
