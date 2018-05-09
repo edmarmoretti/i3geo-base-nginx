@@ -3,6 +3,7 @@ FROM ubuntu:16.04
 ENV MAPSERVER_VERSION 7.0.7
 ENV DEPENDENCIAS  \
     nginx \
+    libfcgi-dev \
     php5.6 \
     php5.6-fpm \ 
     php5.6-cli \
@@ -47,7 +48,7 @@ RUN wget http://download.osgeo.org/mapserver/mapserver-7.0.7.tar.gz && \
         -DWITH_CURL=ON \
         -DWITH_SOS=OFF \
         -DWITH_PHP=ON \
-        -DWITH_FCGI=OFF \
+        -DWITH_FCGI=ON \
         -DWITH_PYTHON=OFF \
         -DWITH_SVGCAIRO=OFF \
         -DWITH_GIF=OFF \
