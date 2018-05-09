@@ -63,5 +63,6 @@ RUN cp /etc/php/5.6/mods-available/mapscript.ini /etc/php/5.6/fpm/conf.d && \
     apt-get remove --purge -y wget cmake && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+COPY ./docker/sites_available_default /etc/nginx/sites-available/default
 COPY ./docker/php-fpm-envvar.sh /php-fpm-envvar.sh
 EXPOSE 8080
