@@ -2,10 +2,9 @@ FROM ubuntu:16.04
 
 ENV MAPSERVER_VERSION 7.0.7
 ENV DEPENDENCIAS  \
-    apache2 \
+    nginx \
     php5.6 \
     php5.6-fpm \
-    libapache2-mod-fastcgi \
     php5.6-memcached \ 
     php5.6-cli \
     php5.6-mbstring \
@@ -30,8 +29,7 @@ ENV DEPENDENCIAS  \
     libharfbuzz-dev \
     libcairo-dev \
     libgdal-dev \
-    cmake \ 
-    libapache2-mod-xsendfile
+    cmake
 RUN apt-get update && \
     export LANG=C.UTF-8 && \
     apt-get install --no-install-recommends -y build-essential && \
@@ -39,10 +37,7 @@ RUN apt-get update && \
     add-apt-repository ppa:ondrej/php && \
     apt-get update
 RUN apt-get install --no-install-recommends -y ${DEPENDENCIAS}
-RUN a2enmod rewrite && \
-    a2enmod cgi && \
-    a2enmod xsendfile && \
-    wget http://download.osgeo.org/mapserver/mapserver-7.0.7.tar.gz && \
+RUN wget http://download.osgeo.org/mapserver/mapserver-7.0.7.tar.gz && \
     tar xvf mapserver-${MAPSERVER_VERSION}.tar.gz && \
     rm -f mapserver-${MAPSERVER_VERSION}.tar.gz && \
     cd mapserver-${MAPSERVER_VERSION}/ && \
@@ -66,15 +61,9 @@ RUN a2enmod rewrite && \
     cd /var/www && \
     touch /var/www/index.php && \
     ln -s /tmp/ms_tmp ms_tmp
-RUN a2enmod proxy_fcgi setenvif
-RUN a2enconf php5.6-fpm
-RUN a2enmod mpm_event
 RUN cp /etc/php/5.6/mods-available/mapscript.ini /etc/php/5.6/fpm/conf.d && \
     apt-get remove --purge -y wget cmake && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-COPY ./docker/000-default.conf /etc/apache2/sites-available/
-COPY ./docker/php.ini /etc/php/5.6/apache2/
-COPY ./docker/ports.conf /etc/apache2/
 COPY ./docker/php-fpm-envvar.sh /php-fpm-envvar.sh
 EXPOSE 8080
