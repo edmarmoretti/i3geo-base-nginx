@@ -4,8 +4,7 @@ ENV MAPSERVER_VERSION 7.0.7
 ENV DEPENDENCIAS  \
     nginx \
     php5.6 \
-    php5.6-fpm \
-    php5.6-memcached \ 
+    php5.6-fpm \ 
     php5.6-cli \
     php5.6-mbstring \
     php5.6-mcrypt \
@@ -21,7 +20,6 @@ ENV DEPENDENCIAS  \
     php5.6-xsl \
     php5.6-imagick \
     php5.6-dev \
-    memcached \
     wget \
     libfreetype6-dev \
     libproj-dev \
