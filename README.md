@@ -16,8 +16,12 @@ Após docker ser executado, o console já está dentro do contêiner, agora digi
 *  Copia as variáveis de ambiente `/bin/bash -c 'source /php-fpm-envvar.sh'`
 *  Inicie o nginx `service nginx start`
 
+Para verificar o endereço IP digite no terminal (fora do contêiner Docker):
 
-Acesse navegador e digite `http://localhost/i3geo`
+`docker ps`
+`docker inspect CONTAINER ID`
+
+Acesse navegador e digite `http://endereco_ip/i3geo`
 
 A conexão com o banco de dados pode ser definida por meio de variáveis de ambiente, exemplo:
 
