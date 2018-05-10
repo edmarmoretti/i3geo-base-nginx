@@ -65,24 +65,51 @@ server {
 	#location ~ /\.ht {
 	#	deny all;
 	#}
+	location ~* \.map$ {
+        	return 444;
+	}
+	# Block execution of PHP files in uploads folders
+        location ~* /(?:uploads|files)/.*\.php$
+        {
+                deny all;
+        }
+	# Protect Perl/CGI/etc files
+        location ~* \.(pl|cgi|py|sh|lua|)\$
+        {
+                return 444;
+        }
+
+        # Block web attacks
+        location ~* (roundcube|webdav|smtp|http\:|soap|w00tw00t)
+        {
+                return 444;
+        }
+
+        # Protect other sensitive files
+        location ~* \.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)$|^(\..*|Entries.*|Repository|Root|Tag|Templ$
+        {
+                return 444;
+        }
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        location ~ /\.ht {
+                deny all;
+        }
+
+        # Protect ~ files
+        location ~ ~$
+        {
+                access_log off;
+                log_not_found off;
+                deny all;
+        }
+
+        # Protect .git files
+        location ~ /\.git
+        {
+                access_log off;
+                log_not_found off;
+                deny all;
+        }
 }
-
-
-# Virtual Host configuration for example.com
-#
-# You can move that to a different file under sites-available/ and symlink that
-# to sites-enabled/ to enable it.
-#
-#server {
-#	listen 80;
-#	listen [::]:80;
-#
-#	server_name example.com;
-#
-#	root /var/www/example.com;
-#	index index.html;
-#
-#	location / {
-#		try_files $uri $uri/ =404;
-#	}
-#}
