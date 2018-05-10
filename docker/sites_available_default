@@ -50,11 +50,13 @@ server {
 	#
 	location ~ \.php$ {
 		include snippets/fastcgi-php.conf;
+		try_files $uri =404;
 	#
 	#	# With php7.0-cgi alone:
 	#	fastcgi_pass 127.0.0.1:9000;
 	#	# With php7.0-fpm:
 		fastcgi_pass unix:/run/php/php5.6-fpm.sock;
+		include fastcgi_params;
 	}
 	
 
