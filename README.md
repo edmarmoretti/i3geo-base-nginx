@@ -1,8 +1,10 @@
-# i3Geo Softwate básico com FastCgi e Nginx
+# i3Geo Softwate básico com FastCgi e Nginx (experimental)
 [![Docker Build Statu](https://img.shields.io/docker/build/i3geo/i3geo-base-nginx.svg)](https://hub.docker.com/r/i3geo/i3geo-base-nginx/builds/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/i3geo/i3geo-base-nginx.svg)](https://hub.docker.com/r/i3geo/i3geo-base-nginx/builds/)
 
-O objetivo desta imagem Docker é prover o software básico, com FstCgi (php-fpm) para utilização do i3Geo. Para o desenvolvedor este é um mecanismo que apoia o processo de criação de novas funcionalidades uma vez que todas as dependencias já estão instaladas.
+O objetivo desta imagem Docker é prover o software básico, com FstCgi (php-fpm) e Nginx para utilização do i3Geo. Para o desenvolvedor este é um mecanismo que apoia o processo de criação de novas funcionalidades uma vez que todas as dependencias já estão instaladas.
+
+Revise as configurações de segurança incluídas no arquivo docker/sites_available_default
 
 Para utilizar em modo de desenvolvimento:
 
