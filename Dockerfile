@@ -3,7 +3,6 @@ FROM ubuntu:16.04
 ENV MAPSERVER_VERSION 7.0.7
 ENV DEPENDENCIAS  \
     nginx \
-    apache2 \
     libfcgi-dev \
     php5.6 \
     php5.6-fpm \ 
@@ -67,4 +66,4 @@ RUN cp /etc/php/5.6/mods-available/mapscript.ini /etc/php/5.6/fpm/conf.d && \
     rm -rf /var/lib/apt/lists/*
 COPY ./docker/sites_available_default /etc/nginx/sites-available/default
 COPY ./docker/php-fpm-envvar.sh /php-fpm-envvar.sh
-EXPOSE 8080
+EXPOSE 8080 443
