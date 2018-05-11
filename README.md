@@ -21,6 +21,7 @@ Após docker ser executado, o console já está dentro do contêiner, agora digi
 Para verificar o endereço IP digite no terminal (fora do contêiner Docker):
 
 `docker ps`
+
 `docker inspect CONTAINER ID`
 
 Acesse navegador e digite `http://endereco_ip/i3geo`
