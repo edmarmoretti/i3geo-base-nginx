@@ -40,9 +40,9 @@ server {
 
 	server_name _;
 
-	location ~ /\?$ {
-                try_files $uri/index.php$args =404;
-        }
+	if ($request_uri ~ [/][?] ) {
+		rewrite ^(.*)$ index.php redirect;
+	}
 
 	location / {
 		# First attempt to serve request as file, then
