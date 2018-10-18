@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ENV MAPSERVER_VERSION 7.0.7
+ENV MAPSERVER_VERSION 7.2.1
 ENV DEPENDENCIAS  \
     nginx \
     libfcgi-dev \
@@ -28,7 +28,8 @@ ENV DEPENDENCIAS  \
     libharfbuzz-dev \
     libcairo-dev \
     libgdal-dev \
-    cmake
+    cmake \
+    protobuf-c-compiler
 RUN apt-get update && \
     export LANG=C.UTF-8 && \
     apt-get install --no-install-recommends -y build-essential && \
@@ -36,7 +37,7 @@ RUN apt-get update && \
     add-apt-repository ppa:ondrej/php && \
     apt-get update
 RUN apt-get install --no-install-recommends -y ${DEPENDENCIAS}
-RUN wget http://download.osgeo.org/mapserver/mapserver-7.0.7.tar.gz && \
+RUN wget http://download.osgeo.org/mapserver/mapserver-7.2.1.tar.gz && \
     tar xvf mapserver-${MAPSERVER_VERSION}.tar.gz && \
     rm -f mapserver-${MAPSERVER_VERSION}.tar.gz && \
     cd mapserver-${MAPSERVER_VERSION}/ && \
